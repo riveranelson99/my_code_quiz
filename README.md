@@ -10,4 +10,5 @@ Present to user a series of questions that are presented in a SEQUENCE of some t
 The user is to be DEDUCTED TIME from the counter for every WRONG answer given.
 The quiz is concluded when the TIMER reaches 0 or the user finishes the total amount of questions.
 When the quiz is concluded, the user can RECORD their SCORES along with their INITIALS.
+Consider having double file types to accomplish the tasks (Two htmls or two scripts)
 */
