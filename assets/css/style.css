@@ -11,6 +11,7 @@ a:hover {
 body {
     font-family: serif;
     font-size: 120%;
+    background-color: powderblue;
 }
 
 button {
@@ -28,21 +29,27 @@ button:hover {
     background-color: rgba(220, 20, 60, 0.700);
 }
 
-.choices button {
-    display: block;
+.frame {
+    margin: 100px auto 0 auto;
+    max-width: 600px;
 }
 
-.feedback {
-    font-style: italic;
-    font-size: 120%;
-    margin-top: 20px;
-    padding-top: 10px;
-    color: gray;
-    border-top: 2px solid #ccc;
+h1,
+h2 {
+    text-align: center;
 }
 
-.hide {
+.hidden {
     display: none;
+}
+
+.indicator {
+    text-align: center;
+    font-style: oblique;
+    font-family: serif;
+    color: mediumblue;
+    font-size: 25px;
+    padding-top: 10px;
 }
 
 input[type="text"] {
@@ -62,6 +69,12 @@ ol {
     padding-left: 0px;
     max-height: 400px;
     overflow: auto;
+    text-align: center;
+}
+
+p {
+    text-align: center;
+    font-size: 20px;
 }
 
 .start {
@@ -74,13 +87,8 @@ ol {
     left: 10px;
 }
 
-.timer {
+.time-indicator {
     position: absolute;
-    top: 10px;
+    top: -10px;
     right: 10px;
-}
-
-.wrapper {
-    margin: 100px auto 0 auto;
-    max-width: 600px;
 }

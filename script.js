@@ -13,167 +13,160 @@ User can see scores or clear them
 User can choose to return to quiz start to take again
 */
 
-var startBtn = document.getElementById("start");
-var timerEl = document.getElementById("time");
-var questionsEl = document.getElementById("questions");
-var choicesEl = document.getElementById("choices");
-var initialsEl = document.getElementById("initials");
-var feedbackEl = document.getElementById("feedback");
-var submitBtn = document.getElementById("submit");
-var currentQuestionIndex = 0;
-var time = 60;
-var timerId;
+var $start = document.getElementById("start");
+var $timer = document.getElementById("countdown");
+var $question = document.getElementById("question");
+var $answers = document.getElementById("answers");
+var $save = document.getElementById("name");
+var $answerIndicator = document.getElementById("indicator");
+var $submit = document.getElementById("submit");
+var $questionIndex = 0;
+var $time = 75;
+var $timeInterval;
 
-var questions = [ {
+var $questionArray = [ {
 
-    title: "What tag is used to link a javascript file to your html?",
-    choices: ["<div>", "<script>", "<a>", "<link>"],
+    quesiton: "What tag is used to link a javascript file to your html?",
+    options: ["<div>", "<script>", "<a>", "<link>"],
     answer: "<script>"
 
     }, {
 
-    title: "What is considered best casing practice for Javascript?",
-    choices: ["Camel Case", "Pascal Case", "Snake Case", "Upper Case"],
+    quesiton: "What is considered best casing practice for Javascript?",
+    options: ["Camel Case", "Pascal Case", "Snake Case", "Upper Case"],
     answer: "Camel Case"
 
     }, {
 
-    title: "Which of the following is NOT a primitive data type?",
-    choices: ["String", "Boolean", "Arrays", "Number"],
+    quesiton: "Which of the following is NOT a primitive data type?",
+    options: ["String", "Boolean", "Arrays", "Number"],
     answer: "Arrays"
 
     }, {
 
-    title: "A local variable can be accessed globally.",
-    choices: ["True", "False"],
+    quesiton: "A local variable can be accessed globally.",
+    options: ["True", "False"],
     answer: "False"
 
     }, {
 
-    title: "Defining a function is the same as invoking it.",
-    choices: ["True", "False"],
+    quesiton: "Defining a function is the same as invoking it.",
+    options: ["True", "False"],
     answer: "False"
 
     }, {
 
-    title: "Functions that are owned by a certain type of element are known as what?",
-    choices: ["Scope", "Conditional Statements", "Objects", "Methods"],
+    quesiton: "Functions that are owned by a certain type of element are known as what?",
+    options: ["Scope", "Conditional Statements", "Objects", "Methods"],
     answer: "Methods"
 
     }
 ];
 
 function startQuiz() {
-    var startScreen = document.getElementById("start-screen");
+    var $initialize = document.getElementById("home-page");
 
-    startScreen.setAttribute("class", "hide");
-    questionsEl.setAttribute("class", " ");
-    timerId = setInterval(function(){
+    $initialize.setAttribute("class", "hidden");
+    $question.setAttribute("class", " ");
+    $timeInterval = setInterval(function(){
     clockTick();
     }, 1000);
-    timerEl.textContent = time;
+    $timer.textContent = $time;
 
     getQuestion();
 }
 
-function getQuestion() {
-    var currentQuestion = questions[currentQuestionIndex];
+function clockTick() {
+    $time--;
+    $timer.textContent = $time;
 
-    questionsEl.children[0].textContent = currentQuestion.title;
-    while (choicesEl.hasChildNodes()){
-    choicesEl.removeChild(choicesEl.lastChild);
+    if ($time <= 0){
+    quizEnd();
     }
-    for (var i = 0; i < currentQuestion.choices.length; i++){
-    var choiceButton = document.createElement("button");
+}
 
-    choiceButton.textContent = currentQuestion.choices[i];    
-    choicesEl.appendChild(choiceButton);
+function getQuestion() {
+    var $activeQuestion = $questionArray[$questionIndex];
+
+    $question.children[0].textContent = $activeQuestion.quesiton;
+    while ($answers.hasChildNodes()){
+    $answers.removeChild($answers.lastChild);
+    }
+    for (var i = 0; i < $activeQuestion.options.length; i++){
+    var $optionButton = document.createElement("button");
+
+    $optionButton.textContent = $activeQuestion.options[i];    
+    $answers.appendChild($optionButton);
     }    
-    choicesEl.children[0].addEventListener("click", function(event){
-    questionClick(choicesEl.children[0]);
+    $answers.children[0].addEventListener("click", function(event){
+    questionClick($answers.children[0]);
     });
-    choicesEl.children[1].addEventListener("click", function(event){
-    questionClick(choicesEl.children[1]);
+    $answers.children[1].addEventListener("click", function(event){
+    questionClick($answers.children[1]);
     });
-    choicesEl.children[2].addEventListener("click", function(event){
-    questionClick(choicesEl.children[2]);
+    $answers.children[2].addEventListener("click", function(event){
+    questionClick($answers.children[2]);
     });
-    choicesEl.children[3].addEventListener("click", function(event){
-    questionClick(choicesEl.children[3]);
+    $answers.children[3].addEventListener("click", function(event){
+    questionClick($answers.children[3]);
     });
 }
 
 function questionClick(answerChoice) {
-    if (answerChoice.textContent != questions[currentQuestionIndex].answer){
-    time -= 10;
-    feedbackEl.textContent = "Incorrect";
+    if (answerChoice.textContent != $questionArray[$questionIndex].answer){
+    $time -= 10;
+    $answerIndicator.textContent = "Incorrect";
     } else {
-    feedbackEl.textContent = "Correct";
+    $answerIndicator.textContent = "Correct";
     }
-    feedbackEl.setAttribute("class", "feedback");
+    $answerIndicator.setAttribute("class", "indicator");
     setInterval(function(){
-    feedbackEl.setAttribute("class", "feedback hide");
-    }, 500);
-    currentQuestionIndex++;
-    if (currentQuestionIndex === questions.length) {
+    $answerIndicator.setAttribute("class", "hidden");
+    }, 750);
+    $questionIndex++;
+    if ($questionIndex === $questionArray.length) {
     quizEnd();
     } else {
     getQuestion();
     }
 }
 
-function clockTick() {
-    time--;
-    timerEl.textContent = time;
-
-    if (time <= 0){
-    quizEnd();
-    }
-}
-
 function quizEnd() {
-    clearInterval(timerId);
-    timerEl.textContent = time;
+    clearInterval($timeInterval);
+    $timer.textContent = $time;
 
-    var endScreenEl = document.getElementById("end-screen");
-    endScreenEl.setAttribute("class", " ");
+    var $finale = document.getElementById("finale");
+    $finale.setAttribute("class", " ");
 
-    var finalScoreEl = document.getElementById("final-score");
-    finalScoreEl.textContent = time;
+    var $scorePage = document.getElementById("score-page");
+    $scorePage.textContent = $time;
 
-    questionsEl.setAttribute("class", "hide");
+    $question.setAttribute("class", "hidden");
 }
 
 function saveHighscore() {
-    var initials = initialsEl.value.toUpperCase();
-    if (initials === ""){ 
+    var $name = $save.value.toUpperCase();
+    if ($name === ""){ 
     alert("Input mustn't be blank'");
     return;
     } else {
-    var highscores;
-    if (JSON.parse(localStorage.getItem("highscores")) != null)
-        highscores = JSON.parse(window.localStorage.getItem("highscores"));
+    var $scoreTotals;
+    if (JSON.parse(localStorage.getItem("score-count")) != null)
+        $scoreTotals = JSON.parse(window.localStorage.getItem("score-count"));
     else
-        highscores = [];
-    var newScore = {
-        initials: initials,
-        score: time
+        $scoreTotals = [];
+    var $scoreSave = {
+        initials: $name,
+        score: $time
     };
-    highscores.push(newScore);
-    localStorage.setItem("highscores", JSON.stringify(highscores));
+    $scoreTotals.push($scoreSave);
+    localStorage.setItem("score-count", JSON.stringify($scoreTotals));
     location.href = "assets/highscores/highscores.html";
     }
 }
 
-function checkForEnter(event) {
-    if (event.keyCode === 13){
-        saveHighscore();
-    }
-}
-
-submitBtn.addEventListener("click", saveHighscore);
-startBtn.addEventListener("click", startQuiz);
-initialsEl.addEventListener("keyup", checkForEnter);
+$submit.addEventListener("click", saveHighscore);
+$start.addEventListener("click", startQuiz);
 
 // A function will go here the initializes the questions
 // Questions will perhaps be objects?
@@ -186,5 +179,3 @@ initialsEl.addEventListener("keyup", checkForEnter);
 
 // A function will perhaps be called on to redirect user to start of quiz
 // Function will also allow user to clear highscores as well
-
-// startBtn.addEventListener("click", initializeQuiz)
