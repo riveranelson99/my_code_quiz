@@ -171,10 +171,10 @@ function checkForEnter(event) {
     }
 }
 
-
 submitBtn.addEventListener("click", saveHighscore);
 startBtn.addEventListener("click", startQuiz);
 initialsEl.addEventListener("keyup", checkForEnter);
+
 // A function will go here the initializes the questions
 // Questions will perhaps be objects?
 // Function will allow user to click on different answers
