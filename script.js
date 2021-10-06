@@ -32,37 +32,37 @@ var $timeInterval;
 // Ensure the question object/array are approximately 5+ questions
 var $questionArray = [ {
 
-    quesiton: "What tag is used to link a javascript file to your html?",
+    question: "What tag is used to link a javascript file to your html?",
     options: ["<div>", "<script>", "<a>", "<link>"],
     answer: "<script>"
 
     }, {
 
-    quesiton: "What is considered best casing practice for Javascript?",
+    question: "What is considered best casing practice for Javascript?",
     options: ["Camel Case", "Pascal Case", "Snake Case", "Upper Case"],
     answer: "Camel Case"
 
     }, {
 
-    quesiton: "Which of the following is NOT a primitive data type?",
+    question: "Which of the following is NOT a primitive data type?",
     options: ["String", "Boolean", "Arrays", "Number"],
     answer: "Arrays"
 
     }, {
 
-    quesiton: "A local variable can be accessed globally.",
+    question: "A local variable can be accessed globally.",
     options: ["True", "False"],
     answer: "False"
 
     }, {
 
-    quesiton: "Defining a function is the same as invoking it.",
+    question: "Defining a function is the same as invoking it.",
     options: ["True", "False"],
     answer: "False"
 
     }, {
 
-    quesiton: "Functions that are owned by a certain type of element are known as what?",
+    question: "Functions that are owned by a certain type of element are known as what?",
     options: ["Scope", "Conditional Statements", "Objects", "Methods"],
     answer: "Methods"
 
@@ -71,7 +71,7 @@ var $questionArray = [ {
 
 // Establish function that initiates the quiz upon clicking on the start button
 // In addition to initiating the quiz, the start button will also begin the countdown timer
-// Ensure that questions are populated via seperate function
+// Ensure that questions are populated via separate function
 function initializeQuiz() {
     var $initialize = document.getElementById("home-page");
 
@@ -85,7 +85,7 @@ function initializeQuiz() {
     populateQuestion();
 }
 
-// Establish the countdown timer as a function to be intialized upon the start of the quiz
+// Establish the countdown timer as a function to be initialized upon the start of the quiz
 // Ensure the quiz is ended when the timer runs out
 function countDown() {
     $time--;
@@ -103,7 +103,7 @@ function countDown() {
 function populateQuestion() {
     var $activeQuestion = $questionArray[$questionIndex];
 
-    $question.children[0].textContent = $activeQuestion.quesiton;
+    $question.children[0].textContent = $activeQuestion.question;
     while ($answers.hasChildNodes()){
         $answers.removeChild($answers.lastChild);
     }
@@ -171,7 +171,7 @@ function quizEnd() {
 // The user will be presented with the option to enter their name
 // Try to prompt user to not leave name blank
 // The users score is set to local data to be referenced again later if they so choose
-// Said score is to be added onto any exisiting scores in local data (should any exist)
+// Said score is to be added onto any existing scores in local data (should any exist)
 function saveHighscore() {
     var $name = $save.value.toUpperCase();
     if ($name === ""){ 
