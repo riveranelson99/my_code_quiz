@@ -10,12 +10,19 @@
 </head>
 
 <body>
+<!--Establish a header section that will contain a link to the highscores page and a time indicator-->
+<!--The highscores page will be a seperate html element-->
     <header>
         <a href="assets/highscores/highscores.html" class="scores">View Highscores</a>
         <p class="time-indicator">Time: <span id="countdown">0</span></p>
     </header>
 
+<!--Establish a central area in which all the content will be held-->
+<!--This central area will be primarily center screen and stay that way in entirety-->
     <main class="frame">
+    <!--Establish a section to hold all the elements of the home page-->
+    <!--Home page is to have a start button that initiates the quiz-->
+    <!--Follow the example given in protfolio folder as to the contents of the home page-->
         <section id="home-page" class="start">
             <h1>Coding Quiz Challenge</h1>
             <p>
@@ -25,11 +32,16 @@
             <button id="start">Start Quiz</button>
         </section>
 
+    <!--Establish section to be built upon via javascript-->
+    <!--This section is to be where the questions populate along with their associated answers/options-->
         <section id="question" class="hidden">
             <p></p>
             <div id="answers"></div>
         </section>
 
+    <!--Establish a section to serve as the final point-->
+    <!--This point will remain hidden until the end of the game-->
+    <!--Follow the example given in portfolio folder as to the contents of the final point-->
         <section id="finale" class="hidden">
             <h2>All done!</h2>
             <p>Your final score is <span id="score-page"></span>.</p>
@@ -39,6 +51,8 @@
             </p>
         </section>
 
+    <!--Establish an indicator of some sort similar to the example given in the portfolio folder-->
+    <!--Most likely to be built upon via javascript-->
         <div id="indicator" class="hidden"></div>
     </main>
 
